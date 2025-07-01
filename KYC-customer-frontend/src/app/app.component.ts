@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +12,5 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'kyc';
+ 
 }

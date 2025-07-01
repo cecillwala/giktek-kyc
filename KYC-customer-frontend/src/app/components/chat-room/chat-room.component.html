@@ -1,0 +1,24 @@
+<div class="chat-container">
+    <section class="chat-box">
+        @for (message of messages(); track message.id) {
+            @if (!message.admin){
+                <app-sender [message]="message"/>
+            }
+            @else{
+                <app-receiver [message]="message"/>
+            }
+        }
+    
+    </section>
+    <br/>
+    <form class="chat-form" (ngSubmit)="onSubmit()">
+        <input
+         type="text"
+         class="search"
+         autocomplete="off"
+         name="query"
+         [(ngModel)]="query().text"
+         placeholder="Ask me something"/>
+        <button type="submit" class="search-btn">&#8593;</button>
+    </form>
+</div>

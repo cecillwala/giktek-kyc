@@ -7,7 +7,7 @@ spring:
     username: guest
     password: guest
   datasource:
-    url:  jdbc:postgresql://postgres:5432/kyc_db
+    url:  jdbc:postgresql://localhost:5434/kyc_db
     password: postgres
     username: postgres
     driver-class-name: org.postgresql.Driver
@@ -39,7 +39,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:9099/eureka/eureka
+      defaultZone: http://localhost:9099/eureka
   instance:
     prefer-ip-address: true
 

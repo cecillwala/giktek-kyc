@@ -1,0 +1,7 @@
+<div class="chats-container">
+    @for (chat of chats(); track chat){
+        <div class="chat" (click)="switchPage(chat)">
+            {{ chat }}
+        </div>
+    }
+</div>

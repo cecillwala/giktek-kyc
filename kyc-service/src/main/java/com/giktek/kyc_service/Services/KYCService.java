@@ -10,10 +10,11 @@ import com.giktek.kyc_service.DTO.CustomerDTO;
 import com.giktek.kyc_service.Repositories.CustomerRepo;
 import java.io.IOException;
 import org.springframework.dao.DataIntegrityViolationException;
+
+// import com.giktek.onboarding.Models.CustomerDTO;
 import java.util.*;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
-// import com.giktek.onboarding.Models.CustomerDTO;
 
 
 @Service
@@ -30,18 +31,20 @@ public class KYCService {
     }
 
 //  Create new customer and add personal details    
-    public ResponseEntity<Map<String, Long>> createCustomerAccount(Customer customer){
-        Map<String, Long> customerId = new HashMap<>();
-
+    public ResponseEntity<Map<String, String>> createCustomerAccount(Customer customer){
+        Map<String, String> response = new HashMap<>();
+        
         try{
         repo.save(customer);
         }
         catch(DataIntegrityViolationException e){
-            customerId.put("customerId", (long)-1);
-            return new ResponseEntity<Map<String, Long>>(customerId, HttpStatus.OK);
+            response.put("customerId", "-1");
+            return new ResponseEntity<Map<String, String>>(response, HttpStatus.OK);
         }
-        customerId.put("customerId", customer.getCustomerId());
-        return new ResponseEntity<Map<String, Long>>(customerId, HttpStatus.OK);
+        
+        response.put("customerId", customer.getCustomerId().toString());
+        response.put("chatId", generateChatId());
+        return new ResponseEntity<Map<String, String>>(response, HttpStatus.OK);
     }
 
     
@@ -92,6 +95,18 @@ public class KYCService {
             System.out.println("Something happened:\n" + e);
         }
        return url;
+    }
+
+    public String generateChatId(){
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        Random rand = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 10; i++) {
+            sb.append(chars.charAt(rand.nextInt(chars.length())));
+        }
+
+        return sb.toString();
     }
 
     public  ResponseEntity<Map<String, Long>> saveCustomerEmail(String email, Long customerId){

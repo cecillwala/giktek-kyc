@@ -16,7 +16,17 @@ spring:
           uri:  lb://report-service
           predicates:
             - Path=/admin/**
+
+        - id: sockets-service
+          uri:  lb:ws://sockets-service
+          predicates:
+            - Path=/ws/**
             
+        - id: sockets-service
+          uri:  lb://sockets-service
+          predicates:
+            - Path=/chats/**
+
         - id: email-service
           uri:  lb://email-service
           predicates:

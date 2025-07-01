@@ -22,7 +22,7 @@ public class KycController {
     }
 
     @PostMapping("/new-customer")
-    public ResponseEntity<Map<String, Long>> newCustomer(@RequestBody Customer customer){
+    public ResponseEntity<Map<String, String>> newCustomer(@RequestBody Customer customer){
         System.out.println(customer.toString());
         return kycService.createCustomerAccount(customer);
     }

@@ -14,6 +14,7 @@ interface CustomerResponse {
   employmentStatus: string;
   dateOfBirth: string;
   county: string;
+  chatId: string;
 }
 
 interface DocumentResponse {
@@ -26,7 +27,7 @@ interface DocumentResponse {
   providedIn: 'root'//makes the service available in the app
 })
 export class KycService {
-  private apiUrl = 'https://giktekkyc.org/kyc';//base url for the backend
+  private apiUrl = 'https://cecillwala.online/kyc';//base url for the backend
   private route = inject(Router);
 
   constructor(private http: HttpClient) {}
@@ -67,7 +68,8 @@ export class KycService {
       frontPhotoIdUrl: customerData.frontPhotoIdUrl,
       backPhotoIdUrl: customerData.backPhotoIdUrl,
       email: customerData.email,
-      isCaptured: customerData.isCaptured
+      isCaptured: customerData.isCaptured,
+      chatId: ""
     };
 
     console.log('Sending payload to backend:', payload); // Debug log
@@ -77,10 +79,12 @@ export class KycService {
         //on success ,store returned customerid and formdata in local storage
         const storedData = {
           ...payload,
-          customerId: response.id || response.customerId
+          customerId: response.id || response.customerId,
+          chatId: response.chatId 
         };
         localStorage.setItem('step1Data', JSON.stringify(storedData));
         localStorage.setItem('customerId', storedData.customerId.toString());
+        localStorage.setItem('chatId', storedData.chatId)
         console.log('Customer created successfully:', response);
       }),
       catchError(error => {

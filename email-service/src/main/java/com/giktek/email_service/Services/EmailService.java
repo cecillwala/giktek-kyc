@@ -28,13 +28,13 @@ public class EmailService {
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("lwalacecil13@gmail.com", "aeot qvfo jnoa odun");
+                return new PasswordAuthentication("cecilwala@gmail.com", "ygsc wmgz fzdh xcvq");
             }
         });
 
         MimeMessage message = new MimeMessage(session); 
         
-        message.setFrom(new InternetAddress("lwalacecil13@gmail.com"));
+        message.setFrom(new InternetAddress("cecilwala@gmail.com"));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(email));
         message.setSubject("GikTek Interns KYC Customer Onboarding Verification");
 

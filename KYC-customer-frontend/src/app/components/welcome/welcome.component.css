@@ -63,6 +63,10 @@ h1 {
   line-height: 1.3;
 }
 
+button{
+  cursor: pointer;
+}
+
 .steps-overview ul {
   list-style: none;
   padding: 0;

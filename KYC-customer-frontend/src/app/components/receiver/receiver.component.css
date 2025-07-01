@@ -1,0 +1,10 @@
+.left-text-bubble{
+    text-align: left;
+    color: #fff;
+    background-color: #b8b6b6;
+    width:fit-content;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 20px;
+    margin-left: 0;
+}   

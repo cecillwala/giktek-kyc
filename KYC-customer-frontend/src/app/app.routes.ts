@@ -20,6 +20,13 @@ export const routes: Routes = [
     component: Step2Component
   },
   {
+    path:'chat/:chat',
+    loadComponent: () => {
+      return import('./components/chat-room/chat-room.component').then((m) => m.ChatRoomComponent)
+    } 
+  },
+
+  {
     path: 'step3',
     component: Step3Component
   },
@@ -27,6 +34,17 @@ export const routes: Routes = [
     path: 'success',
     component: SuccessComponent
   },
-  { path: '**', redirectTo: 'welcome' }
+  {
+        path:'admin-chat/:chat',
+        loadComponent: () => {
+            return import('./components/admin/admin.component').then((m) => m.AdminComponent)
+        }
+    },
+    {
+        path:'admin-chats',
+        loadComponent: () => {
+            return import('./components/admin-chats/admin-chats.component').then((m) => m.AdminChatsComponent)
+        }
+    },
 ];
 

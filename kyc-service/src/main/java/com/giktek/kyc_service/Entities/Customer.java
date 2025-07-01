@@ -36,7 +36,7 @@ public class Customer {
     @Column(nullable=true)
     private String backPhotoIdUrl = null;
 
-    @Column(nullable=true, unique = true)
+    @Column(nullable=true)
     private String email = null;
 
     private boolean isCaptured = false;
